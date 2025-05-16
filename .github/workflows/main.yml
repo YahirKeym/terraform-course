@@ -11,10 +11,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Set up node.js
         uses: actions/setup-node@v3
         with:
@@ -26,13 +26,13 @@ jobs:
         run: cd api && npm ci
 
       - name: Run tests
-        run: cd api && npm run test        
-        
+        run: cd api && npm run test
+
   deploy:
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
-    
+
     steps:
       - uses: actions/checkout@v3
 
@@ -51,7 +51,7 @@ jobs:
       - name: Terraform format
         run: |
           cd terraform
-        terraform fmt -check
+          terraform fmt -check
 
       - name: Terraform plan
         run: |
@@ -67,5 +67,3 @@ jobs:
         run: |
           cd terraform
           terraform output
-          
-  
