@@ -110,21 +110,23 @@ resource "aws_instance" "app" {
 
       user_data = <<-EOF
               #!/bin/bash
-              apt-get update -y
-              apt-get install -y nodejs npm git
-              npm install -g pm2
+              sudo apt-get update -y
+              sudo apt-get install -y nodejs npm git
+              sudo npm install -g pm2
               
               # Clone the repository
               git clone ${var.repository_url} /app
               cd /app/api
               
               # Install dependencies
-              npm install
+              sudo npm install
               
               # Start the application
-              npm run build
-              pm2 start dist/main.js --name nestjs-app
+              sudo npm run build
+              sudo pm2 start dist/main.js --name nestjs-app
+              pm2 start dist/main.js --name nestjs-app -f
               EOF
 }
+
 
 

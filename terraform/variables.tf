@@ -10,7 +10,7 @@ variable "project_name" {
 
 variable "ami_id" {
     type = string
-    default = "ami-0953476d60561c955"
+    default = "ami-084568db4383264d4"
 }
 
 variable "key_name" {
